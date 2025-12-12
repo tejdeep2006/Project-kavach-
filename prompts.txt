@@ -1,0 +1,23 @@
+Project Kavach: Prompt Engineering Documentation
+Hackathon: Gemini Launchpad
+Date: December 12, 2025
+
+---
+
+1. Battle Plan Generation (Text Generation)
+Used in: services/geminiService.ts -> generateBattlePlan()
+Model: gemini-2.5-flash
+Prompt: "Generate a realistic, short, top-secret military battle plan text. It should sound urgent and contain tactical coordinates and codewords. Keep it under 50 words."
+Rationale: We needed a concise (<50 words) text to ensure it fits easily within the LSB capacity of standard sized images without requiring massive files. The "urgent" and "military" tone aligns with the project theme.
+
+---
+
+2. Cover Image Analysis (Multimodal Analysis)
+Used in: services/geminiService.ts -> analyzeCoverImage()
+Model: gemini-2.5-flash-image
+Prompt: "Is this image innocent enough to be used as a cover for steganography? Reply with a short sentence describing why it is a good or bad camouflage."
+Rationale: This simulates an AI advisor checking if the chosen carrier image looks too suspicious (e.g., if it's already noisy or looks edited). We pass the base64 image data directly to the model.
+
+---
+
+End of Documentation

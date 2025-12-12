@@ -50,3 +50,35 @@ export const analyzeCoverImage = async (base64Image: string): Promise<string> =>
     return "Analysis failed: Proceed with caution.";
   }
 };
+
+export const analyzeCoverAudio = async (base64Audio: string): Promise<string> => {
+  try {
+    const ai = getClient();
+    
+    // Dynamic MimeType extraction
+    const mimeMatch = base64Audio.match(/data:(audio\/[^;]+);base64,/);
+    const mimeType = mimeMatch ? mimeMatch[1] : 'audio/wav';
+    const cleanBase64 = base64Audio.split(',')[1];
+    
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: {
+        parts: [
+          {
+            inlineData: {
+              mimeType: mimeType,
+              data: cleanBase64
+            }
+          },
+          {
+            text: "Listen to this audio. Does it contain any suspicious noise patterns that might reveal steganography, or does it sound natural? Keep it brief and tactical."
+          }
+        ]
+      }
+    });
+    return response.text || "Audio Analysis complete: Frequency spectrum nominal.";
+  } catch (error) {
+    console.error("Gemini Error:", error);
+    return "Audio Analysis failed: Signal integrity compromised.";
+  }
+};

@@ -4,6 +4,8 @@ export enum AppMode {
   HOME = 'HOME'
 }
 
+export type MediaType = 'IMAGE' | 'AUDIO';
+
 export interface StegoResult {
   success: boolean;
   message?: string;
