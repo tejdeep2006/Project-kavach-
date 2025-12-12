@@ -1,5 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 
+// Fix for TypeScript build error: "Cannot find name 'process'"
+declare var process: any;
+
 const getClient = () => {
   const apiKey = process.env.API_KEY;
   if (!apiKey) {
