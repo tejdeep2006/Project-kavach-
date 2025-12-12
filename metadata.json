@@ -1,0 +1,5 @@
+{
+  "name": "Project kavach ",
+  "description": "Secure Steganographic Communication System for Defence. Encrypts battle plans and hides them inside innocent images using LSB steganography.",
+  "requestFramePermissions": []
+}
